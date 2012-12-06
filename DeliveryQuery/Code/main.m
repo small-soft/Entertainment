@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "SSQUAppDelegate.h"
+#import "SSSLAppDelegate.h"
 
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([SSQUAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([SSSLAppDelegate class]));
     }
 }

@@ -6,24 +6,21 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "SSQUAppDelegate.h"
+#import "SSSLAppDelegate.h"
 
-#import "SSQUViewController.h"
 #import <RestKit/RestKit.h>
-#import "SSQUMoreViewController.h"
+#import "SSMoreViewController.h"
 #import "MobWinBannerView.h"
 #import "SSUncaughtExceptionService.h"
-@interface SSQUAppDelegate()
+@interface SSSLAppDelegate()
 @property (nonatomic, retain) MobWinBannerView *advBannerView;
 @end
-@implementation SSQUAppDelegate
+@implementation SSSLAppDelegate
 
 @synthesize window = _window;
-//@synthesize viewController = _viewController;
 @synthesize rootViewController = _rootViewController;
 @synthesize advBannerView = _advBannerView;
 @synthesize navigationController = _navigationController;
-@synthesize db = _db;
 
 - (void)dealloc
 {
@@ -38,13 +35,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self initDB];
-    [self initApiKey];
     
-    RKClient * client = [RKClient clientWithBaseURLString:@"http://api.kuaidi100.com/"];
-    //增加flag
-    
-    [client.reachabilityObserver getFlags];
+//    RKClient * client = [RKClient clientWithBaseURLString:@"http://api.kuaidi100.com/"];
+//    //增加flag
+//    
+//    [client.reachabilityObserver getFlags];
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
@@ -131,48 +126,11 @@
 }
 
 - (void)infoBtnPress{
-    SSQUMoreViewController *moreViewController = [[SSQUMoreViewController alloc] initWithNibName:@"SSQUMoreViewController" bundle:nil];
+    SSMoreViewController *moreViewController = [[SSMoreViewController alloc] initWithNibName:@"SSMoreViewController" bundle:nil];
     SET_GRAY_BG(moreViewController);
     moreViewController.navigationItem.title = @"关于";
     [self.navigationController pushViewController:moreViewController animated:YES];
     [moreViewController release];
 }
 
-- (void)initDB {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSLog(@"%@",documentsDirectory);
-    
-    NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:@"mydb.sqlite"];
-    
-    NSLog(@"db path:%@",writableDBPath);
-    if (![[NSFileManager defaultManager] fileExistsAtPath:writableDBPath]) {
-        [[NSFileManager defaultManager] copyItemAtPath:[[NSBundle mainBundle] pathForResource:DBNAME ofType:@"sqlite" ] toPath:writableDBPath error:nil];
-    }
-    
-    
-    self.db = [FMDatabase databaseWithPath:writableDBPath];
-}
-
-
--(void)initApiKey{
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *key = (NSString*)[defaults objectForKey:@"api_key"];
-    
-    if (key.length > 0 && ([key isEqualToString:@"0b02a4cce34395bd"] || [key isEqualToString:@"7b732424c8c4a433"])) {
-        return;
-    }
-    int i = arc4random() % 2;
-    
-    key = @"7b732424c8c4a433";
-    if (i == 1) {
-        key = @"0b02a4cce34395bd";
-    }
-    
-    NSLog(@"key is %@",key);
-    
-    [defaults setObject:key forKey:@"api_key"];
-}
 @end

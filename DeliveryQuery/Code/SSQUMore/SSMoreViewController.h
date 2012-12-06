@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SSViewController.h"
 
-@interface SSQUMoreViewController : SSViewController
+@interface SSMoreViewController : SSViewController
 
 @end
