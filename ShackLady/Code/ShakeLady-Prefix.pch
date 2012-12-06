@@ -1,0 +1,44 @@
+//
+// Prefix header for all source files of the 'QueryUtilities' target in the 'QueryUtilities' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_4_0
+#warning "This project uses features only available in iOS SDK 4.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
+
+#define GRAY_BG @"c_first_bg"
+#define SET_GRAY_BG(_viewController) (_viewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:GRAY_BG]])
+
+#define SCREEN_WIDTH ([[UIScreen mainScreen]bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen]bounds].size.height)
+#define RESIZE_VIEW(srcView) (srcView.frame = CGRectMake(srcView.frame.origin.x, srcView.frame.origin.y, srcView.frame.size.width, SCREEN_HEIGHT - srcView.frame.origin.y))
+#define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
+#define SET_AD_FRAME(srcView) (CGRectMake(srcView.frame.origin.x, srcView.frame.origin.y, srcView.frame.size.width, srcView.frame.size.height - 25))
+
+//define NS_ENUM 如果未定义NS_ENUM则定义NS_ENUM，为了解决xcode4.3下的兼容问题
+#ifndef NS_ENUM
+#define NS_ENUM(_type, _name) enum _name : _type _name; enum _name : _type
+#endif
+
+#define HAS_AD ([(NSNumber *)[[[NSBundle mainBundle]infoDictionary]objectForKey:@"HasAd"] boolValue])
+
+#define API_KEY ((NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:@"api_key"])
+
+// 发布时不打log
+#define DEBUG
+#ifdef DEBUG
+#define MYLOG(...) NSLog(__VA_ARGS__)
+#define NSLog(...) NSLog(__VA_ARGS__)
+#define RKLogTrace(...) RKLogTrace(__VA_ARGS__)
+#else
+#define MYLOG(...) do {} while (0)
+#define NSLog(...) {}
+#define RKLogTrace(...) {}
+#endif
