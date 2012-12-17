@@ -13,6 +13,8 @@
 #import "MobWinBannerView.h"
 #import "SSUncaughtExceptionService.h"
 #import "SSSLShakeViewController.h"
+#import "HJObjManager.h"
+#import "SSSLMainMenuViewController.h"
 @interface SSSLAppDelegate()
 @property (nonatomic, retain) MobWinBannerView *advBannerView;
 @end
@@ -36,16 +38,27 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Initialize RestKit
+    RKClient* client = [RKClient clientWithBaseURLString: @"http://aisoucang.com/"];
     
-//    RKClient * client = [RKClient clientWithBaseURLString:@"http://api.kuaidi100.com/"];
-//    //增加flag
-//    
-//    [client.reachabilityObserver getFlags];
+    // Enable automatic network activity indicator management
+    client.requestQueue.showsNetworkActivityIndicatorWhenBusy = YES;
+    //由于存在默认路径下的缓存及缓存策略 因此只需设定过期时间即可。
+    client.cachePolicy = RKRequestCachePolicyNone;
+    
+    HJObjManager *objManager = [HJObjManager sharedManager];
+    NSString* cacheDirectory = [NSHomeDirectory() stringByAppendingString:@"/Library/HJCaches/imgcache"] ;
+    
+	HJMOFileCache * fileCache = [[[HJMOFileCache alloc] initWithRootPath:cacheDirectory] autorelease];
+	objManager.fileCache = fileCache;
+	fileCache.fileCountLimit = 10000;
+	fileCache.fileAgeLimit = 60*60*24*7; //1 week
     
     application.applicationSupportsShakeToEdit = YES;
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-    SSSLShakeViewController* mainViewController = [[SSSLShakeViewController alloc] initWithNibName:@"SSSLShakeViewController" bundle:nil] ;
+//    SSSLShakeViewController* mainViewController = [[SSSLShakeViewController alloc] initWithNibName:@"SSSLShakeViewController" bundle:nil] ;
+    SSSLMainMenuViewController* mainViewController = [[SSSLMainMenuViewController alloc] initWithNibName:@"SSSLMainMenuViewController" bundle:nil] ;
     mainViewController.navigationItem.title = @"主菜单";
     
     _navigationController = [[UINavigationController alloc] initWithRootViewController:mainViewController];

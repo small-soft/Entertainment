@@ -13,6 +13,7 @@
 @synthesize label = _label;
 @synthesize button = _button;
 @synthesize maskImageView = _maskImageView;
+@synthesize backgroundImageView = _backgroundImageView;
 - (id)init {
 	self = [super init];
 	
@@ -37,14 +38,14 @@
                 
                 break;
             }
-//            case SSMenuItemViewStyleTextOnly:{
-//                NSArray *views = [[NSBundle mainBundle] loadNibNamed:@"SSMenuItemViewStyleTextOnly" owner:self options:nil];
-//                
-//                self = [[views objectAtIndex:0] retain];
-//                
-//                
-//                break;
-//            }
+            case SSMenuItemViewStyleTextOnly:{
+                NSArray *views = [[NSBundle mainBundle] loadNibNamed:@"SSMenuItemViewStyleTextOnly" owner:self options:nil];
+                
+                self = [[views objectAtIndex:0] retain];
+                
+                
+                break;
+            }
 //            case SSMenuItemViewStyleImageOnly:{
 //                NSArray *views = [[NSBundle mainBundle] loadNibNamed:@"SSMenuItemViewStyleImageOnly" owner:self options:nil];
 //                
@@ -67,6 +68,7 @@
     self.label = nil;
     self.button = nil;
     self.maskImageView = nil;
+    self.backgroundImageView = nil;
     [super dealloc];
 }
 

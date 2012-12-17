@@ -11,6 +11,7 @@ typedef enum {
     SSMenuItemViewStyleImageAndText,
 //    SSMenuItemViewStyleTextOnly,
 //    SSMenuItemViewStyleImageOnly
+    SSMenuItemViewStyleTextOnly
 }SSMenuItemViewStyle;
 
 @interface SSMenuItemView : UIView
@@ -18,6 +19,7 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UILabel *label;
 @property (retain, nonatomic) IBOutlet UIButton *button;
 @property (retain, nonatomic) IBOutlet UIImageView * maskImageView;
+@property (retain, nonatomic) IBOutlet UIImageView * backgroundImageView;
 - (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
 -(id)initWithStyle:(SSMenuItemViewStyle)style;
 @end
