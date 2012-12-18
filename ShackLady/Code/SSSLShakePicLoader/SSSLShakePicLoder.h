@@ -14,7 +14,10 @@
 @interface SSSLShakePicLoder : NSObject
 @property (nonatomic, assign) id<SSSLShakePicLoderDelegate> delegate;
 @property (nonatomic, retain) NSMutableArray * picMutArray;
+@property (nonatomic, retain) NSMutableArray * ladyMutArray;
 @property (nonatomic, retain) NSMutableArray * historyPicArray;
 +(SSSLShakePicLoder *)sharedInstance;
 +(void)sendRequestToGetLadyList;
+
+-(void)nextLady;
 @end

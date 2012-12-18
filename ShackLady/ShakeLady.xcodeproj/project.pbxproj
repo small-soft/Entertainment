@@ -132,6 +132,18 @@
 		9DF2530B16435D9A00869CFE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DF2530816435D9A00869CFE /* Default-568h@2x.png */; };
 		9DF2530C16435D9A00869CFE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DF2530916435D9A00869CFE /* Default.png */; };
 		9DF2530D16435D9A00869CFE /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DF2530A16435D9A00869CFE /* Default@2x.png */; };
+		9DFC9BF816800CE50046B4C0 /* ShakeLadyDB.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9DFC9BF716800CE50046B4C0 /* ShakeLadyDB.sqlite */; };
+		9DFC9C2816800DE00046B4C0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 9DFC9C0E16800DE00046B4C0 /* .gitignore */; };
+		9DFC9C2916800DE00046B4C0 /* CHANGES_AND_TODO_LIST.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9DFC9C0F16800DE00046B4C0 /* CHANGES_AND_TODO_LIST.txt */; };
+		9DFC9C2A16800DE00046B4C0 /* CONTRIBUTORS.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9DFC9C1016800DE00046B4C0 /* CONTRIBUTORS.txt */; };
+		9DFC9C2B16800DE00046B4C0 /* fmdb.1 in Resources */ = {isa = PBXBuildFile; fileRef = 9DFC9C1116800DE00046B4C0 /* fmdb.1 */; };
+		9DFC9C2C16800DE00046B4C0 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9DFC9C1616800DE00046B4C0 /* LICENSE.txt */; };
+		9DFC9C2D16800DE00046B4C0 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 9DFC9C1716800DE00046B4C0 /* README.markdown */; };
+		9DFC9C2E16800DE00046B4C0 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC9C1A16800DE00046B4C0 /* FMDatabase.m */; };
+		9DFC9C2F16800DE00046B4C0 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC9C1C16800DE00046B4C0 /* FMDatabaseAdditions.m */; };
+		9DFC9C3016800DE00046B4C0 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC9C1E16800DE00046B4C0 /* FMDatabasePool.m */; };
+		9DFC9C3116800DE00046B4C0 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC9C2016800DE00046B4C0 /* FMDatabaseQueue.m */; };
+		9DFC9C3316800DE00046B4C0 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC9C2316800DE00046B4C0 /* FMResultSet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +188,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 25160D1514564E810060A5C5;
 			remoteInfo = RestKit;
+		};
+		9DFC9C3616800DE00046B4C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9DFC9C1216800DE00046B4C0 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DD76FA10486AA7600D96B5E;
+			remoteInfo = fmdb;
+		};
+		9DFC9C3816800DE00046B4C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9DFC9C1216800DE00046B4C0 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE4290EF12B42F870088BD94;
+			remoteInfo = FMDB;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -366,6 +392,25 @@
 		9DF2530816435D9A00869CFE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9DF2530916435D9A00869CFE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		9DF2530A16435D9A00869CFE /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		9DFC9BF716800CE50046B4C0 /* ShakeLadyDB.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ShakeLadyDB.sqlite; sourceTree = "<group>"; };
+		9DFC9C0E16800DE00046B4C0 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		9DFC9C0F16800DE00046B4C0 /* CHANGES_AND_TODO_LIST.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES_AND_TODO_LIST.txt; sourceTree = "<group>"; };
+		9DFC9C1016800DE00046B4C0 /* CONTRIBUTORS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CONTRIBUTORS.txt; sourceTree = "<group>"; };
+		9DFC9C1116800DE00046B4C0 /* fmdb.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = fmdb.1; sourceTree = "<group>"; };
+		9DFC9C1216800DE00046B4C0 /* fmdb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = fmdb.xcodeproj; sourceTree = "<group>"; };
+		9DFC9C1516800DE00046B4C0 /* fmdb_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmdb_Prefix.pch; sourceTree = "<group>"; };
+		9DFC9C1616800DE00046B4C0 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		9DFC9C1716800DE00046B4C0 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
+		9DFC9C1916800DE00046B4C0 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		9DFC9C1A16800DE00046B4C0 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		9DFC9C1B16800DE00046B4C0 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		9DFC9C1C16800DE00046B4C0 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		9DFC9C1D16800DE00046B4C0 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		9DFC9C1E16800DE00046B4C0 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		9DFC9C1F16800DE00046B4C0 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		9DFC9C2016800DE00046B4C0 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		9DFC9C2216800DE00046B4C0 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		9DFC9C2316800DE00046B4C0 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -654,6 +699,7 @@
 		9DB985F916390E2500B46470 = {
 			isa = PBXGroup;
 			children = (
+				9DFC9C0D16800DE00046B4C0 /* ccgus-fmdb-450d8b1 */,
 				0FEB7D451671C170000AB944 /* AudioToolbox.framework */,
 				9DBFEED81652728C008CFE2C /* libiconv.dylib */,
 				9DBFEED6165271E1008CFE2C /* CoreVideo.framework */,
@@ -812,6 +858,7 @@
 		9DF2530E16436E2C00869CFE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9DFC9BF616800CE50046B4C0 /* db */,
 				0F9E86691670E4BE00CEE34E /* Sounds */,
 				9DF2530F16436E2C00869CFE /* Images */,
 				0FCEDF801674C4D600C2A758 /* Localizable.strings */,
@@ -879,6 +926,56 @@
 			path = backgrounds;
 			sourceTree = "<group>";
 		};
+		9DFC9BF616800CE50046B4C0 /* db */ = {
+			isa = PBXGroup;
+			children = (
+				9DFC9BF716800CE50046B4C0 /* ShakeLadyDB.sqlite */,
+			);
+			path = db;
+			sourceTree = "<group>";
+		};
+		9DFC9C0D16800DE00046B4C0 /* ccgus-fmdb-450d8b1 */ = {
+			isa = PBXGroup;
+			children = (
+				9DFC9C0E16800DE00046B4C0 /* .gitignore */,
+				9DFC9C0F16800DE00046B4C0 /* CHANGES_AND_TODO_LIST.txt */,
+				9DFC9C1016800DE00046B4C0 /* CONTRIBUTORS.txt */,
+				9DFC9C1116800DE00046B4C0 /* fmdb.1 */,
+				9DFC9C1216800DE00046B4C0 /* fmdb.xcodeproj */,
+				9DFC9C1516800DE00046B4C0 /* fmdb_Prefix.pch */,
+				9DFC9C1616800DE00046B4C0 /* LICENSE.txt */,
+				9DFC9C1716800DE00046B4C0 /* README.markdown */,
+				9DFC9C1816800DE00046B4C0 /* src */,
+			);
+			path = "ccgus-fmdb-450d8b1";
+			sourceTree = "<group>";
+		};
+		9DFC9C1316800DE00046B4C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9DFC9C3716800DE00046B4C0 /* fmdb */,
+				9DFC9C3916800DE00046B4C0 /* libFMDB.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9DFC9C1816800DE00046B4C0 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				9DFC9C1916800DE00046B4C0 /* FMDatabase.h */,
+				9DFC9C1A16800DE00046B4C0 /* FMDatabase.m */,
+				9DFC9C1B16800DE00046B4C0 /* FMDatabaseAdditions.h */,
+				9DFC9C1C16800DE00046B4C0 /* FMDatabaseAdditions.m */,
+				9DFC9C1D16800DE00046B4C0 /* FMDatabasePool.h */,
+				9DFC9C1E16800DE00046B4C0 /* FMDatabasePool.m */,
+				9DFC9C1F16800DE00046B4C0 /* FMDatabaseQueue.h */,
+				9DFC9C2016800DE00046B4C0 /* FMDatabaseQueue.m */,
+				9DFC9C2216800DE00046B4C0 /* FMResultSet.h */,
+				9DFC9C2316800DE00046B4C0 /* FMResultSet.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -921,6 +1018,10 @@
 			productRefGroup = 9DB9860516390E2600B46470 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 9DFC9C1316800DE00046B4C0 /* Products */;
+					ProjectRef = 9DFC9C1216800DE00046B4C0 /* fmdb.xcodeproj */;
+				},
 				{
 					ProductGroup = 0F99B310163986330062597B /* Products */;
 					ProjectRef = 0F99B30F163986330062597B /* RestKit.xcodeproj */;
@@ -967,6 +1068,20 @@
 			fileType = wrapper.cfbundle;
 			path = RestKitResources.bundle;
 			remoteRef = 0F99B322163986330062597B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9DFC9C3716800DE00046B4C0 /* fmdb */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = fmdb;
+			remoteRef = 9DFC9C3616800DE00046B4C0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9DFC9C3916800DE00046B4C0 /* libFMDB.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFMDB.a;
+			remoteRef = 9DFC9C3816800DE00046B4C0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1044,6 +1159,13 @@
 				0F991C7B1676389C00092417 /* photo-gallery-right.png in Resources */,
 				0F991C7C1676389C00092417 /* photo-gallery-right@2x.png in Resources */,
 				0F991C7D1676389C00092417 /* photo-gallery-trashcan.png in Resources */,
+				9DFC9BF816800CE50046B4C0 /* ShakeLadyDB.sqlite in Resources */,
+				9DFC9C2816800DE00046B4C0 /* .gitignore in Resources */,
+				9DFC9C2916800DE00046B4C0 /* CHANGES_AND_TODO_LIST.txt in Resources */,
+				9DFC9C2A16800DE00046B4C0 /* CONTRIBUTORS.txt in Resources */,
+				9DFC9C2B16800DE00046B4C0 /* fmdb.1 in Resources */,
+				9DFC9C2C16800DE00046B4C0 /* LICENSE.txt in Resources */,
+				9DFC9C2D16800DE00046B4C0 /* README.markdown in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1088,6 +1210,11 @@
 				0F991C751676389C00092417 /* FGalleryPhoto.m in Sources */,
 				0F991C761676389C00092417 /* FGalleryPhotoView.m in Sources */,
 				0F991C771676389C00092417 /* FGalleryViewController.m in Sources */,
+				9DFC9C2E16800DE00046B4C0 /* FMDatabase.m in Sources */,
+				9DFC9C2F16800DE00046B4C0 /* FMDatabaseAdditions.m in Sources */,
+				9DFC9C3016800DE00046B4C0 /* FMDatabasePool.m in Sources */,
+				9DFC9C3116800DE00046B4C0 /* FMDatabaseQueue.m in Sources */,
+				9DFC9C3316800DE00046B4C0 /* FMResultSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

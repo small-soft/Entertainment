@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <RestKit/RestKit.h>
+#import "HJManagedImageV.h"
+
 @interface SSSLLadyPic:NSObject
 + (RKObjectMapping *)sharedObjectMapping;
 @property (nonatomic, retain) NSNumber * picId;
+@property (nonatomic, retain) HJManagedImageV * imageView;
 @end
 
 @interface SSSLLadyListResult : NSObject

@@ -31,6 +31,8 @@
 
 #define API_KEY ((NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:@"api_key"])
 
+#define GETDB ([(SSSLAppDelegate *)[[UIApplication sharedApplication] delegate] db])
+
 // 发布时不打log
 #define DEBUG
 #ifdef DEBUG

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FMDatabase.h"
 
 @interface SSSLAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -14,5 +15,7 @@
 
 @property (strong, nonatomic) UINavigationController *navigationController;
 @property (strong, nonatomic) UIViewController *rootViewController;
+
+@property (nonatomic,retain) FMDatabase *db;
 
 @end

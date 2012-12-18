@@ -38,6 +38,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self initDB];
+    
     // Initialize RestKit
     RKClient* client = [RKClient clientWithBaseURLString: @"http://aisoucang.com/"];
     
@@ -148,4 +150,20 @@
     [moreViewController release];
 }
 
+- (void)initDB {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSLog(@"%@",documentsDirectory);
+    
+    NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:@"mydb.sqlite"];
+    
+    NSLog(@"db path:%@",writableDBPath);
+    if (![[NSFileManager defaultManager] fileExistsAtPath:writableDBPath]) {
+        [[NSFileManager defaultManager] copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"ShakeLadyDB" ofType:@"sqlite" ] toPath:writableDBPath error:nil];
+    }
+    
+    
+    self.db = [FMDatabase databaseWithPath:writableDBPath];
+}
 @end

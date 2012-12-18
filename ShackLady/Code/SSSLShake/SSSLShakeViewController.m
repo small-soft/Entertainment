@@ -160,6 +160,8 @@
         self.resultView.ladyImg = (HJManagedImageV*)[picMutArray objectAtIndex:0];
         [self.resultView insertSubview:(HJManagedImageV*)[picMutArray objectAtIndex:0] belowSubview:self.resultView.resultLabel];
 
+        NSLog(@"pop imgurl:%@",self.resultView.ladyImg.url.absoluteString);
+        
         if (self.resultView.ladyImg.image==nil) {
             self.resultView.ladyImg.callbackOnSetImage = self;
             return;
@@ -204,8 +206,10 @@
     group.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     
     [self.resultView.layer addAnimation:group forKey:@"translationPopIn"];
-    NSMutableArray * picMutArray = [SSSLShakePicLoder sharedInstance].picMutArray;
-    [[SSSLShakePicLoder sharedInstance].historyPicArray addObject:[picMutArray objectAtIndex:0]];
-    [picMutArray removeObjectAtIndex:0];
+//    NSMutableArray * picMutArray = [SSSLShakePicLoder sharedInstance].picMutArray;
+//    [[SSSLShakePicLoder sharedInstance].historyPicArray addObject:[picMutArray objectAtIndex:0]];
+    
+    [[SSSLShakePicLoder sharedInstance] nextLady];
+    
 }
 @end

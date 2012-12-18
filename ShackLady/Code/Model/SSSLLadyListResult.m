@@ -10,6 +10,7 @@
 
 @implementation SSSLLadyPic
 @synthesize picId = _picId;
+@synthesize imageView = _imageView;
 + (RKObjectMapping *)sharedObjectMapping{
     RKObjectMapping* sharedObjectMapping = [RKObjectMapping mappingForClass:[SSSLLadyPic class]];
     [sharedObjectMapping mapKeyPath:@"id" toAttribute:@"picId"];
@@ -19,6 +20,7 @@
 - (void)dealloc
 {
     self.picId = nil;
+    self.imageView = nil;
     [super dealloc];
 }
 @end
