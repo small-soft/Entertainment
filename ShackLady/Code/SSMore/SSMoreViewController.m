@@ -39,10 +39,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationController.navigationBarHidden = NO;
+    
 	// Do any additional setup after loading the view.
     self.versionLabel.text = [NSString stringWithFormat:@"V %@" ,[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
     self.appName.text = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
     self.contentTableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:GRAY_BG]];
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -73,6 +73,8 @@
     
     [self setBg];
     
+    SET_GRAY_BG(self);
+    
     [self iViewWillApplear];
 }
 

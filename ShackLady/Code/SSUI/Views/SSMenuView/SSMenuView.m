@@ -111,6 +111,7 @@
         CGFloat yOffset = (row * (self.itemSize.height + yPadding)) + yPadding;
         item.frame = CGRectMake(xOffset, yOffset + self.topPadding, self.itemSize.width, self.itemSize.height);
     }
+    self.contentSize = [self contentSize];
 }
 
 - (void)itemPressedUp:(UIButton *)sender {

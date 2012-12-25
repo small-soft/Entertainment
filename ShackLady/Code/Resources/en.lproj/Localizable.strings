@@ -5,5 +5,18 @@
   Created by 于 佳 on 12-12-9.
 
 */
-"ShakeLady" = "摇木耳";
-"MyLady" = "我的木耳";
+"ShakeLady" = "Shake Lady";
+"MyLady" = "My Ladies";
+"UpLady" = "Upload Lady Image ";
+"AllLady" = "All Ladies";
+"Shop" = "Shop";
+"Setting" = "Setting";
+"Top10" = "Top 10";
+
+"ShakeLadyDes" = "摇美女";
+"MyLadyDes" = "我的女神";
+"UpLadyDes" = "上传美女";
+"AllLadyDes" = "美女大全";
+"ShopDes" = "商店";
+"SettingDes" = "设置";
+"Top10Des" = "排行榜";

@@ -11,9 +11,11 @@
 @implementation SSMenuItemView
 @synthesize imageView = _imageView;
 @synthesize label = _label;
+@synthesize detailLabel = _detailLabel;
 @synthesize button = _button;
 @synthesize maskImageView = _maskImageView;
 @synthesize backgroundImageView = _backgroundImageView;
+@synthesize imageFromNet = _imageFromNet;
 - (id)init {
 	self = [super init];
 	
@@ -69,6 +71,8 @@
     self.button = nil;
     self.maskImageView = nil;
     self.backgroundImageView = nil;
+    self.detailLabel = nil;
+    self.imageFromNet = nil;
     [super dealloc];
 }
 

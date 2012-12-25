@@ -144,6 +144,9 @@
 		9DFC9C3016800DE00046B4C0 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC9C1E16800DE00046B4C0 /* FMDatabasePool.m */; };
 		9DFC9C3116800DE00046B4C0 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC9C2016800DE00046B4C0 /* FMDatabaseQueue.m */; };
 		9DFC9C3316800DE00046B4C0 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC9C2316800DE00046B4C0 /* FMResultSet.m */; };
+		9DFC9C521681AF7A0046B4C0 /* SSCommonResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC9C511681AF7A0046B4C0 /* SSCommonResult.m */; };
+		9DFC9C571683FE020046B4C0 /* SSSLLadyTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC9C551683FE010046B4C0 /* SSSLLadyTopViewController.m */; };
+		9DFC9C581683FE020046B4C0 /* SSSLLadyTopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DFC9C561683FE010046B4C0 /* SSSLLadyTopViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -411,6 +414,12 @@
 		9DFC9C2016800DE00046B4C0 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
 		9DFC9C2216800DE00046B4C0 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		9DFC9C2316800DE00046B4C0 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		9DFC9C3B16818D4F0046B4C0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		9DFC9C501681AF790046B4C0 /* SSCommonResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSCommonResult.h; sourceTree = "<group>"; };
+		9DFC9C511681AF7A0046B4C0 /* SSCommonResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSCommonResult.m; sourceTree = "<group>"; };
+		9DFC9C541683FE010046B4C0 /* SSSLLadyTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSSLLadyTopViewController.h; sourceTree = "<group>"; };
+		9DFC9C551683FE010046B4C0 /* SSSLLadyTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSSLLadyTopViewController.m; sourceTree = "<group>"; };
+		9DFC9C561683FE010046B4C0 /* SSSLLadyTopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSSLLadyTopViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -752,6 +761,7 @@
 		9DB9860E16390E2600B46470 /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				9DFC9C531683FDE50046B4C0 /* SSSLLadyTop */,
 				0F991C3116758FE700092417 /* SSSLShakePicLoader */,
 				0FCEDF551674B0A700C2A758 /* SSSLMainMenu */,
 				0F9E863B1670D13B00CEE34E /* SSSLShake */,
@@ -787,6 +797,8 @@
 				9DBFEEA316524691008CFE2C /* SSDQDeliveryQueryResult.m */,
 				0FEB7D92167222E2000AB944 /* SSSLLadyListResult.h */,
 				0FEB7D93167222E2000AB944 /* SSSLLadyListResult.m */,
+				9DFC9C501681AF790046B4C0 /* SSCommonResult.h */,
+				9DFC9C511681AF7A0046B4C0 /* SSCommonResult.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -974,6 +986,16 @@
 				9DFC9C2316800DE00046B4C0 /* FMResultSet.m */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		9DFC9C531683FDE50046B4C0 /* SSSLLadyTop */ = {
+			isa = PBXGroup;
+			children = (
+				9DFC9C541683FE010046B4C0 /* SSSLLadyTopViewController.h */,
+				9DFC9C551683FE010046B4C0 /* SSSLLadyTopViewController.m */,
+				9DFC9C561683FE010046B4C0 /* SSSLLadyTopViewController.xib */,
+			);
+			path = SSSLLadyTop;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1166,6 +1188,7 @@
 				9DFC9C2B16800DE00046B4C0 /* fmdb.1 in Resources */,
 				9DFC9C2C16800DE00046B4C0 /* LICENSE.txt in Resources */,
 				9DFC9C2D16800DE00046B4C0 /* README.markdown in Resources */,
+				9DFC9C581683FE020046B4C0 /* SSSLLadyTopViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1215,6 +1238,8 @@
 				9DFC9C3016800DE00046B4C0 /* FMDatabasePool.m in Sources */,
 				9DFC9C3116800DE00046B4C0 /* FMDatabaseQueue.m in Sources */,
 				9DFC9C3316800DE00046B4C0 /* FMResultSet.m in Sources */,
+				9DFC9C521681AF7A0046B4C0 /* SSCommonResult.m in Sources */,
+				9DFC9C571683FE020046B4C0 /* SSSLLadyTopViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1242,6 +1267,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				9DB9861216390E2600B46470 /* en */,
+				9DFC9C3B16818D4F0046B4C0 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

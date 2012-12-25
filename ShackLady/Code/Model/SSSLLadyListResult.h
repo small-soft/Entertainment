@@ -13,6 +13,7 @@
 @interface SSSLLadyPic:NSObject
 + (RKObjectMapping *)sharedObjectMapping;
 @property (nonatomic, retain) NSNumber * picId;
+@property (nonatomic) float rate;
 @property (nonatomic, retain) HJManagedImageV * imageView;
 @end
 

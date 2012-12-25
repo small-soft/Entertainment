@@ -15,7 +15,10 @@
 #import "SSSLShakeViewController.h"
 #import "HJObjManager.h"
 #import "SSSLMainMenuViewController.h"
-@interface SSSLAppDelegate()
+#import "SSCommonResult.h"
+#import "SSMapping4RestKitUtils.h"
+
+@interface SSSLAppDelegate()<RKRequestDelegate>
 @property (nonatomic, retain) MobWinBannerView *advBannerView;
 @end
 @implementation SSSLAppDelegate
@@ -47,6 +50,8 @@
     client.requestQueue.showsNetworkActivityIndicatorWhenBusy = YES;
     //由于存在默认路径下的缓存及缓存策略 因此只需设定过期时间即可。
     client.cachePolicy = RKRequestCachePolicyNone;
+    
+    [self sendRegisterRequest];
     
     HJObjManager *objManager = [HJObjManager sharedManager];
     NSString* cacheDirectory = [NSHomeDirectory() stringByAppendingString:@"/Library/HJCaches/imgcache"] ;
@@ -88,6 +93,7 @@
     self.window.rootViewController = self.rootViewController;
     [self.window makeKeyAndVisible];
     [SSUncaughtExceptionService setDefaultHandler];
+    
     return YES;
 }
 
@@ -166,4 +172,42 @@
     
     self.db = [FMDatabase databaseWithPath:writableDBPath];
 }
+
+#pragma mark -
+#pragma mark register member
+-(void)sendRegisterRequest{
+    NSString *userType = USER_TYPE;
+    
+    if (userType.length > 0) {
+        return;
+    }
+    
+    NSString *deviceId = [UIDevice currentDevice].uniqueIdentifier;
+    
+    RKClient *client = [RKClient sharedClient];
+    [client get:[NSString stringWithFormat:@"favorites/json/shakeLady.json?operation=registe&userType=IPHONE&userName=%@&deviceToken=%@",deviceId,deviceId] delegate:self];
+    
+}
+
+-(void)request:(RKRequest *)request didFailLoadWithError:(NSError *)error{
+    NSLog(@"load request error:%@",error);
+}
+
+-(void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response{
+    NSLog(@"response %@", [response bodyAsString]);
+    
+    SSCommonResult * result = [SSMapping4RestKitUtils performMappingWithMapping:[SSCommonResult sharedObjectMapping] forJsonString:[response bodyAsString]];
+    
+    if (!result.isSuccess) {
+        return;
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *deviceId = [UIDevice currentDevice].uniqueIdentifier;
+    
+    [defaults setObject:@"IPHONE" forKey:@"userType"];
+    [defaults setObject:deviceId forKey:@"userName"];
+    [defaults setInteger:20 forKey:@"money"];
+}
+
 @end

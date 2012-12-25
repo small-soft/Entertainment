@@ -18,31 +18,51 @@
 #import "FMDatabase.h"
 #import "SSSLAppDelegate.h"
 #import "SSSLLadyListResult.h"
+#import "UIView+UIViewUtil.h"
+#import "SSSLLadyTopViewController.h"
+#import "SSMoreViewController.h"
 
 @interface SSSLMainMenuViewController ()<SSMenuViewDelegate,SSSLShakePicLoderDelegate,FGalleryViewControllerDelegate>
 @property (nonatomic, retain) IBOutlet SSMenuView * menuView;
 @property (nonatomic, retain) NSArray *menuTitle;
+@property (nonatomic, retain) NSArray *menuSubTitle;
 @property (nonatomic, retain) NSMutableArray *myLady;
+@property (nonatomic, retain) IBOutlet UIView *accountView;
+@property (nonatomic, retain) IBOutlet UILabel *account;
+@property (nonatomic, retain) IBOutlet UILabel *money;
+
 @end
 
 @implementation SSSLMainMenuViewController
 @synthesize menuView = _menuView;
 @synthesize menuTitle = _menuTitle;
 @synthesize myLady = _myLady;
+@synthesize accountView = _accountView;
+@synthesize menuSubTitle = _menuSubTitle;
+@synthesize account = _account;
+@synthesize money = _money;
+
+-(void)dealloc{
+    self.menuView = nil;
+    self.menuTitle = nil;
+    self.menuSubTitle = nil;
+    self.myLady = nil;
+    self.accountView = nil;
+    self.account = nil;
+    self.money = nil;
+    [super dealloc];
+}
 
 -(NSArray *)menuTitle{
     if(nil==_menuTitle){
-        self.menuTitle = [[NSArray alloc] initWithObjects:NSLocalizedString(@"ShakeLady",nil), NSLocalizedString(@"MyLady", nil), nil];
+        self.menuTitle = [[NSArray alloc] initWithObjects:NSLocalizedString(@"ShakeLady",nil), NSLocalizedString(@"MyLady", nil),NSLocalizedString(@"Top10", nil),NSLocalizedString(@"AllLady", nil),NSLocalizedString(@"Shop", nil),NSLocalizedString(@"Setting", nil), nil];
+        
+        self.menuSubTitle = [[NSArray alloc] initWithObjects:NSLocalizedString(@"ShakeLadyDes",nil), NSLocalizedString(@"MyLadyDes", nil),NSLocalizedString(@"Top10Des", nil),NSLocalizedString(@"AllLadyDes", nil),NSLocalizedString(@"ShopDes", nil),NSLocalizedString(@"SettingDes", nil), nil];
     }
     
     return _menuTitle;
 }
--(void)dealloc{
-    self.menuView = nil;
-    self.menuTitle = nil;
-    self.myLady = nil;
-    [super dealloc];
-}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -59,16 +79,33 @@
     self.menuView.menuDelegate = self;
     self.menuView.itemSize = CGSizeMake(240, 40);
     self.menuView.columnCount = 1;
-    self.menuView.yPadding = 20;
+    self.menuView.yPadding = 15;
     [self.menuView reloadData];
     [SSSLShakePicLoder sharedInstance].delegate = self;
     [SSSLShakePicLoder sendRequestToGetLadyList];
     [self.loadingView showLoadingView];
     
+//    self.view.backgroundColor = [UIColor colorWithRed:255. green:75. blue:112. alpha:1];
+    
+//    self.view.backgroundColor = [UIColor blackColor];
+    UIImage *buttonImageNormal = [UIImage imageNamed:@"shake_bg"];
+    UIImage *stretchableImage = [buttonImageNormal stretchableImageWithLeftCapWidth:0 topCapHeight:100];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:stretchableImage];
+    
+    self.accountView.layer.borderWidth = 1;
+    self.accountView.layer.cornerRadius = 12;
+    self.accountView.layer.borderColor = [[UIColor grayColor] CGColor];
+    
+//    SET_GRAY_BG(self);
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [self initData];
+    
+    self.navigationController.navigationBarHidden = YES;
+    
+    [self setAccountInfo];
     
     [super viewWillAppear:animated];
 }
@@ -94,6 +131,14 @@
         FGalleryViewController * localGallery = [[FGalleryViewController alloc] initWithPhotoSource:self];
         [self.navigationController pushViewController:localGallery animated:YES];
         [localGallery release];
+    }else if ([menuTileForIndex isEqualToString:NSLocalizedString(@"Top10",nil)]) {
+        SSSLLadyTopViewController * shakeViewController = [[SSSLLadyTopViewController alloc] init];
+        [self.navigationController pushViewController:shakeViewController animated:YES];
+        [shakeViewController release];
+    }else if ([menuTileForIndex isEqualToString:NSLocalizedString(@"Setting",nil)]) {
+        SSMoreViewController * shakeViewController = [[SSMoreViewController alloc] init];
+        [self.navigationController pushViewController:shakeViewController animated:YES];
+        [shakeViewController release];
     }
 
 }
@@ -105,7 +150,21 @@
 -(SSMenuItemView*)menuView:(SSMenuView *)menuView ItemViewForRowAtIndex:(NSUInteger)index{
     SSMenuItemView * menuItemView = [[[SSMenuItemView alloc] initWithStyle:SSMenuItemViewStyleTextOnly] autorelease];
     menuItemView.label.text = [self.menuTitle objectAtIndex:index];
-    menuItemView.backgroundImageView.backgroundColor = [UIColor blueColor];
+    menuItemView.label.textColor = [UIColor whiteColor];
+    [menuItemView.label verticalMove:-5];
+    
+    menuItemView.detailLabel.text = [self.menuSubTitle objectAtIndex:index];
+    menuItemView.detailLabel.textColor = [UIColor whiteColor];
+    [menuItemView.detailLabel verticalMove:-5];
+    
+    menuItemView.backgroundImageView.backgroundColor = [UIColor grayColor];
+    menuItemView.backgroundImageView.layer.borderWidth = 1;
+    menuItemView.backgroundImageView.layer.cornerRadius = 12;
+    menuItemView.backgroundImageView.layer.borderColor = [[UIColor grayColor] CGColor];
+    
+    menuItemView.maskImageView.layer.borderWidth = 1;
+    menuItemView.maskImageView.layer.cornerRadius = 12;
+    menuItemView.maskImageView.layer.borderColor = [[UIColor grayColor] CGColor];
     
     return menuItemView;
 }
@@ -160,7 +219,7 @@
         
         FMResultSet *rs = [db executeQuery:sql];
         
-        HJObjManager * objManager = [HJObjManager sharedManager];
+//        HJObjManager * objManager = [HJObjManager sharedManager];
 
         while ([rs next]) {
             
@@ -168,7 +227,7 @@
             lady.picId = [NSNumber numberWithInt:[rs intForColumn:@"ladyId"]];
             HJManagedImageV * imageV = [[HJManagedImageV alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
             imageV.url = [NSURL URLWithString:[NSString stringWithFormat:@"http://static.aisoucang.com/upload/shakeLady/%d.jpg",[lady.picId integerValue]]];
-            [objManager manage:imageV];
+//            [objManager manage:imageV];
             lady.imageView = imageV;
             
             [self.myLady addObject:lady];
@@ -177,5 +236,17 @@
     }
     
     [db close];
+}
+
+-(void)setAccountInfo{
+    if (![USER_TYPE isEqualToString:@"IPHONE"]) {
+
+        self.account.text = USER_NAME;
+    }else{
+        self.account.text = @"屌丝终有逆袭日";
+    }
+    
+    self.money.text = [NSString stringWithFormat:@"屌丝币：%d",[USER_MONEY intValue]];
+    
 }
 @end

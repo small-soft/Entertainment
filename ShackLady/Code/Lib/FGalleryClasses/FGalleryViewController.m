@@ -296,6 +296,8 @@
 {
     [super viewWillAppear:animated];
 	
+    self.navigationController.navigationBarHidden = NO;
+    
     _isActive = YES;
     
     self.useThumbnailView = _useThumbnailView;

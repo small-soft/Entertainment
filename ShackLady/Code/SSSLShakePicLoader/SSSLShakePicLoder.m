@@ -60,7 +60,7 @@ static SSSLShakePicLoder * _sharedInstance = nil;
 }
 -(void)sendRequestToGetLadyList{
     RKClient *client = [RKClient sharedClient];
-    [client get:@"favorites/json/shakeLady.json?operation=shake&userType=AISOUCANG&userName=aisoucang" delegate:self];
+    [client get:[NSString stringWithFormat:@"favorites/json/shakeLady.json?operation=shake&userType=%@&userName=%@",USER_TYPE,USER_NAME] delegate:self];
 }
 -(void)dealloc{
     self.picMutArray = nil;

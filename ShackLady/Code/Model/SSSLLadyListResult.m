@@ -11,9 +11,12 @@
 @implementation SSSLLadyPic
 @synthesize picId = _picId;
 @synthesize imageView = _imageView;
+@synthesize rate = _rate;
 + (RKObjectMapping *)sharedObjectMapping{
     RKObjectMapping* sharedObjectMapping = [RKObjectMapping mappingForClass:[SSSLLadyPic class]];
     [sharedObjectMapping mapKeyPath:@"id" toAttribute:@"picId"];
+    [sharedObjectMapping mapKeyPath:@"rate" toAttribute:@"rate"];
+    
     return sharedObjectMapping;
 }
 
