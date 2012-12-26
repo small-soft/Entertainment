@@ -14,7 +14,7 @@
 #define kToolbarHeight 40
 
 
-@interface FGalleryViewController (Private)
+@interface FGalleryViewController (Private)<UITableViewDataSource,UITableViewDelegate>
 
 // general
 - (void)buildViews;
@@ -45,7 +45,7 @@
 - (void)hideThumbnailViewWithAnimation:(BOOL)animation;
 - (void)buildThumbsViewPhotos;
 
-- (void)arrangeThumbs;
+//- (void)arrangeThumbs;
 - (void)loadAllThumbViewPhotos;
 
 - (void)preloadThumbnailImages;
@@ -142,7 +142,7 @@
     _container							= [[UIView alloc] initWithFrame:CGRectZero];
     _innerContainer						= [[UIView alloc] initWithFrame:CGRectZero];
     _scroller							= [[UIScrollView alloc] initWithFrame:CGRectZero];
-    _thumbsView							= [[UIScrollView alloc] initWithFrame:CGRectZero];
+    _thumbsView							= [[UITableView alloc] initWithFrame:CGRectZero];
     _toolbar							= [[UIToolbar alloc] initWithFrame:CGRectZero];
     _captionContainer					= [[UIView alloc] initWithFrame:CGRectZero];
     _caption							= [[UILabel alloc] initWithFrame:CGRectZero];
@@ -181,7 +181,6 @@
     _thumbsView.backgroundColor					= [UIColor whiteColor];
     _thumbsView.hidden							= YES;
     _thumbsView.contentInset					= UIEdgeInsetsMake( kThumbnailSpacing, kThumbnailSpacing, kThumbnailSpacing, kThumbnailSpacing);
-    
 	// set view
 	self.view                                   = _container;
 	
@@ -274,7 +273,9 @@
         
         // create the thumbnail views
         [self buildThumbsViewPhotos];
-        
+        _thumbsView.delegate  = self;
+        _thumbsView.dataSource = self;
+        [_thumbsView reloadData];
         // start loading thumbs
         [self preloadThumbnailImages];
         
@@ -440,7 +441,8 @@
 	[self updateCaption];
 	[self resizeImageViewsWithRect:_scroller.frame];
 	[self layoutButtons];
-	[self arrangeThumbs];
+//	[self arrangeThumbs];
+    [_thumbsView reloadData];
 	[self moveScrollerToCurrentIndexWithAnimation:NO];
 }
 
@@ -709,7 +711,7 @@
 		[thumbView setContentMode:UIViewContentModeScaleAspectFill];
 		[thumbView setClipsToBounds:YES];
 		[thumbView setTag:i];
-		[_thumbsView addSubview:thumbView];
+//		[_thumbsView addSubview:thumbView];
 		[_photoThumbnailViews addObject:thumbView];
 		[thumbView release];
 	}
@@ -717,33 +719,33 @@
 
 
 
-- (void)arrangeThumbs
-{
-	float dx = 0.0;
-	float dy = 0.0;
-	// loop through all thumbs to size and place them
-	NSUInteger i, count = [_photoThumbnailViews count];
-	for (i = 0; i < count; i++) {
-		FGalleryPhotoView *thumbView = [_photoThumbnailViews objectAtIndex:i];
-		[thumbView setBackgroundColor:[UIColor grayColor]];
-		
-		// create new frame
-		thumbView.frame = CGRectMake( dx, dy, kThumbnailSize, kThumbnailSize);
-		
-		// increment position
-		dx += kThumbnailSize + kThumbnailSpacing;
-		
-		// check if we need to move to a different row
-		if( dx + kThumbnailSize + kThumbnailSpacing > _thumbsView.frame.size.width - kThumbnailSpacing )
-		{
-			dx = 0.0;
-			dy += kThumbnailSize + kThumbnailSpacing;
-		}
-	}
-	
-	// set the content size of the thumb scroller
-	[_thumbsView setContentSize:CGSizeMake( _thumbsView.frame.size.width - ( kThumbnailSpacing*2 ), dy + kThumbnailSize + kThumbnailSpacing )];
-}
+//- (void)arrangeThumbs
+//{
+//	float dx = 0.0;
+//	float dy = 0.0;
+//	// loop through all thumbs to size and place them
+//	NSUInteger i, count = [_photoThumbnailViews count];
+//	for (i = 0; i < count; i++) {
+//		FGalleryPhotoView *thumbView = [_photoThumbnailViews objectAtIndex:i];
+//		[thumbView setBackgroundColor:[UIColor grayColor]];
+//		
+//		// create new frame
+//		thumbView.frame = CGRectMake( dx, dy, kThumbnailSize, kThumbnailSize);
+//		
+//		// increment position
+//		dx += kThumbnailSize + kThumbnailSpacing;
+//		
+//		// check if we need to move to a different row
+//		if( dx + kThumbnailSize + kThumbnailSpacing > _thumbsView.frame.size.width - kThumbnailSpacing )
+//		{
+//			dx = 0.0;
+//			dy += kThumbnailSize + kThumbnailSpacing;
+//		}
+//	}
+//
+//	// set the content size of the thumb scroller
+//	[_thumbsView setContentSize:CGSizeMake( _thumbsView.frame.size.width - ( kThumbnailSpacing*2 ), dy + kThumbnailSize + kThumbnailSpacing )];
+//}
 
 
 - (void)toggleThumbnailViewWithAnimation:(BOOL)animation
@@ -761,7 +763,8 @@
 {
     _isThumbViewShowing = YES;
     
-    [self arrangeThumbs];
+//    [self arrangeThumbs];
+    [_thumbsView reloadData];
     [self.navigationItem.rightBarButtonItem setTitle:@"Done"];
     
     if (animation) {
@@ -1172,6 +1175,56 @@
     [super dealloc];
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSUInteger count = [_photoSource numberOfPhotosForPhotoGallery:self];
+    return count%4 == 0 ? count/4 : (count/4)+1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *CellIdentifier = @"photoCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    for (UIView * view in [cell subviews]) {
+        [view removeFromSuperview];
+    }
+    
+    NSUInteger count = [_photoSource numberOfPhotosForPhotoGallery:self];
+    NSUInteger totalrow = count%4 == 0 ? count/4 : (count/4)+1;
+    NSUInteger row = [indexPath row] + 1;
+    NSUInteger thumbsNumber = 4;
+    if (row==totalrow) {
+        thumbsNumber = count%4==0?4:count%4;
+    }
+    float dx = 0.0;
+    float dy = 0.0;
+    // loop through all thumbs to size and place them
+    for (int i = 0; i < thumbsNumber; i++) {
+        FGalleryPhotoView *thumbView = [_photoThumbnailViews objectAtIndex: i + [indexPath row] * 4];
+        // create new frame
+        thumbView.frame = CGRectMake( dx, dy, kThumbnailSize, kThumbnailSize);
+        
+        // increment position
+        dx += kThumbnailSize + kThumbnailSpacing;
+        
+        // check if we need to move to a different row
+        if( dx + kThumbnailSize + kThumbnailSpacing > _thumbsView.frame.size.width - kThumbnailSpacing )
+        {
+            dx = 0.0;
+            dy += kThumbnailSize + kThumbnailSpacing;
+        }
+        
+        [cell addSubview:thumbView];
+    }
+
+
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return kThumbnailSize;
+}
 
 @end
 
